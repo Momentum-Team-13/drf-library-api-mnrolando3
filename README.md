@@ -5,7 +5,7 @@ Create a new API-only application that lets users keep track of books, including
 Users should be able to search for a book by title or author.
 
 Anyone can add a new book as long as the same book is not already in the library. Only admin users can update book details (like whether it is "featured") and delete books.
-- So is this just a database collection of ANY book or a collection of books read or owned by a particular user?
+- So is this just a database collection of ANY book or a collection of books read or owned by a particular user? ANY book
 
 You'll also need a book tracking model so that users can mark a book as "want to read", "reading", or "read/done"; this status can also be updated. The tracking model should have a foreign key to a book and to a user.
 - View/read/get does not require login; marking/patching/updating does require login
