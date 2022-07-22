@@ -35,11 +35,26 @@ class Book(models.Model):
 
 
 class Tracking(models.Model):
-    # status = models.Field.choices ... unsure how to go about this
-    user = models.ForeignKey(User, on_delete=models.CASCADE,
-                             related_name='user_tracking')
+    READ = 'RD'
+    READING = 'RDING'
+    WANT_TO_READ = 'WTR'
+    STATUS_CHOICES = [
+        (READ, 'Read'),
+        (READING, 'Reading'),
+        (WANT_TO_READ, 'Want to read'),
+    ]
+    status_choices = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default=WANT_TO_READ,
+    )
+    # user = models.ForeignKey(User, on_delete=models.CASCADE,
+    #                          related_name='user_tracking')
     # book = models.ForeignKey(Book, on_delete=models.CASCADE,
     #                          related_name='book_tracking')
+
+    def __str__(self):
+        return f'{self.status_choices}'
 
 
 class Note(models.Model):
@@ -47,9 +62,10 @@ class Note(models.Model):
     page_number = models.CharField(max_length=10, null=True, blank=True)
     public = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE,
-                             related_name='user_notes')
-    # book = models.ForeignKey(Book, related_name='book_notes')
+    # user = models.ForeignKey(User, on_delete=models.CASCADE,
+    #                          related_name='user_notes')
+    # book = models.ForeignKey(Book, on_delete=models.CASCADE,
+    #                          related_name='book_notes')
 
     def __str__(self):
         return f'{self.note}'

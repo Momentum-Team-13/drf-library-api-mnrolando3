@@ -14,8 +14,8 @@ You'll also need a book tracking model so that users can mark a book as "want to
 Optionally users can take notes on books. These notes have a foreign key relationship with a book and a user, a datetime they are created, a note body, a boolean field marking it as public or private, and an optional page number. Private notes are viewable only by the author. When notes are retrieved, return them by creation time in reverse order.
 
 Users should be able to see a list of all the books they are tracking, or a list by status (for instance, all their "want to read" books). You _could_ consider using [DjangoFilterBackend](https://www.django-rest-framework.org/api-guide/filtering/#djangofilterbackend) for this.
-- all books with tracking model
-- books with specific attribute on tracking model
+- books with all tracking objects
+- books with specific on tracking objects
 
 You should _not_ make forms or templates for this app, but you will need models, urls, views, and serializers. You should use class-based views and return JSON responses.
 
