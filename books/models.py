@@ -21,7 +21,6 @@ class Book(models.Model):
     publication_date = models.DateField()
     genre = models.CharField(max_length=100)
     featured = models.BooleanField()
-    # tracking_status = models.ForeignKey("Tracking", related_name='books')
 
     def __str__(self):
         return f'{self.title} {self.author}'
@@ -48,10 +47,10 @@ class Tracking(models.Model):
         choices=STATUS_CHOICES,
         default=WANT_TO_READ,
     )
-    # user = models.ForeignKey(User, on_delete=models.CASCADE,
-    #                          related_name='user_tracking')
-    # book = models.ForeignKey(Book, on_delete=models.CASCADE,
-    #                          related_name='book_tracking')
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name='user_tracking_statuses')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE,
+                             related_name='book_tracking_statuses')
 
     def __str__(self):
         return f'{self.status_choices}'
@@ -62,10 +61,10 @@ class Note(models.Model):
     page_number = models.CharField(max_length=10, null=True, blank=True)
     public = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE,
-    #                          related_name='user_notes')
-    # book = models.ForeignKey(Book, on_delete=models.CASCADE,
-    #                          related_name='book_notes')
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name='user_notes')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE,
+                             related_name='book_notes')
 
     def __str__(self):
         return f'{self.note}'
