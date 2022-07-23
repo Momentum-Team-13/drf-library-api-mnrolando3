@@ -33,7 +33,7 @@ class Book(models.Model):
         ]
 
 
-class Tracking(models.Model):
+class Status(models.Model):
     READ = 'RD'
     READING = 'RDING'
     WANT_TO_READ = 'WTR'
@@ -48,9 +48,9 @@ class Tracking(models.Model):
         default=WANT_TO_READ,
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE,
-                             related_name='user_tracking_statuses')
+                             related_name='user_statuses')
     book = models.ForeignKey(Book, on_delete=models.CASCADE,
-                             related_name='book_tracking_statuses')
+                             related_name='book_statuses')
 
     def __str__(self):
         return f'{self.status_choices}'

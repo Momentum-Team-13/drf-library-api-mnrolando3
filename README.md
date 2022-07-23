@@ -42,3 +42,6 @@ Admin users can:
     - no delete=models.CASCADE on tracking model FK
 
 You'll need to use Insomnia (or some other tool for making requests) to test your API as you are building it.
+
+image.png
+
