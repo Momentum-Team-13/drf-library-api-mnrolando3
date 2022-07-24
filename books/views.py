@@ -14,7 +14,16 @@ class BookList(generics.ListCreateAPIView):
     # allows creation of list of all Book objects
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = (permissions.IsAdminOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    # need to set featured field as read-only
+
+
+class BookDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = (IsAdminOrReadOnly,)
+
+
 
     # def perform_create(self, serializer):
     #     serializer.save(owner=self.request.user)
