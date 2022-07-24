@@ -11,3 +11,5 @@ class IsAdminOrReadOnly(permissions.BasePermission):
         else:
             return request.user.is_staff
         # does this work???
+
+# class IsPublicOrReadOnly

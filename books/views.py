@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view
 
 from .models import Book, User, Status, Note
 from .permissions import IsAdminOrReadOnly
-from .serializers import BookSerializer
+from .serializers import BookSerializer, NoteSerializer
 
 
 class BookList(generics.ListCreateAPIView):
@@ -24,6 +24,10 @@ class BookDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAdminOrReadOnly,)
 
 
+class NoteList(generics.ListCreateAPIView):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     # def perform_create(self, serializer):
     #     serializer.save(owner=self.request.user)
