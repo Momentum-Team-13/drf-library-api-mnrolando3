@@ -21,23 +21,28 @@ You should _not_ make forms or templates for this app, but you will need models,
 
 Your app should allow users to:
 
-- list all books
-- list all featured books
-- create a book
-- retrieve details about a book
-- search books by author or title
+- list all books - DONE
+- list all featured books - DONE
+- create a book - DONE
+- retrieve details about a book - DONE
+- search books by author or title - DONE
+
 - see a list of all the books they are tracking and their statuses
-- mark a book as want to read, reading, or read
-- update the want to read/reading/read status of a book
-- see a list of all their books by status (e.g., all the books they have marked as "read")
+    - can see list of all statuses
+
+- see a list of all their books by status (e.g., all the books they have marked as "read") - DONE
+- mark a book as want to read, reading, or read - DONE
+- update the want to read/reading/read status of a book - DONE
+
 - retrieve all their own private notes for a book
 - retrieve all public notes for a book
-- create a note for a book
-- edit their own notes
+
+- create a note for a book - DONE
+- edit their own notes - DONE
 
 Admin users can:
 
-- update a book (including marking/unmarking it as featured)
+- update a book (including marking/unmarking it as featured) - DONE
 - delete a book (this should not delete notes about a book)
     - no delete=models.CASCADE on tracking model FK
 

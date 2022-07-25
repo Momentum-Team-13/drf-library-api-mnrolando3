@@ -23,4 +23,8 @@ urlpatterns = [
     path('books/', views.BookList.as_view(), name='book-list'),
     path('books/<int:pk>/', views.BookDetail.as_view(), name='book-detail'),
     path('notes/', views.NoteList.as_view(), name='note-list'),
+    path('notes/<int:pk>/', views.NoteDetail.as_view(), name='note-detail'),
+    path('status/', views.StatusList.as_view(), name='status-list'),
+    path('status/<int:pk>/', views.StatusDetail.as_view(),
+         name='status-detail'),
 ]

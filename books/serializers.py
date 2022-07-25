@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Book, Note
+from .models import Book, Note, Status
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -19,8 +19,8 @@ class BookSerializer(serializers.ModelSerializer):
 
 class NoteSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
-    # # set owner var as a readonly field
-    # # source populates field based on specified attribute owner's username
+    # set owner var as a readonly field
+    # source populates field based on specified attribute owner's username
 
     class Meta:
         model = Note
@@ -29,6 +29,18 @@ class NoteSerializer(serializers.ModelSerializer):
             'page_number',
             'public',
             'created_at',
+            'book',
+            'owner',
+        ]
+
+
+class StatusSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+
+    class Meta:
+        model = Status
+        fields = [
+            'status_choices',
             'book',
             'owner',
         ]
