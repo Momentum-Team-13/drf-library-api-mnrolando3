@@ -12,6 +12,7 @@ psycopg2-binary = "*"
 django-on-heroku = "*"
 gunicorn = "*"
 djangorestframework = "*"
+django-filter = "*"
 
 [dev-packages]
 flake8 = "*"

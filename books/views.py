@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from .models import Book, User, Status, Note
-from .permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly, IsOwner
+from .permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly, IsOwner, IsPublic
 from .serializers import BookSerializer, NoteSerializer, StatusSerializer
 
 
@@ -39,7 +39,7 @@ class NoteList(generics.ListCreateAPIView):
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['book']
     filterset_fields = ['owner']
-    # permission_classes = (IsPublic, IsOwner,)
+    permission_classes = (IsPublic, IsOwner,)
     # still need to figure out how to show all public notes
     # and only own private notes
 
