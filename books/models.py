@@ -35,16 +35,16 @@ class Book(models.Model):
 
 
 class Status(models.Model):
-    READ = 'RD'
-    READING = 'RDING'
-    WANT_TO_READ = 'WTR'
+    READ = 'Read'
+    READING = 'Reading'
+    WANT_TO_READ = 'Want to Read'
     STATUS_CHOICES = [
         (READ, 'Read'),
         (READING, 'Reading'),
-        (WANT_TO_READ, 'Want to read'),
+        (WANT_TO_READ, 'Want to Read'),
     ]
     status_choices = models.CharField(
-        max_length=10,
+        max_length=20,
         choices=STATUS_CHOICES,
         default=WANT_TO_READ,
     )

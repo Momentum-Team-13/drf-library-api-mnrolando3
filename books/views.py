@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from .models import Book, User, Status, Note
-from .permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
+from .permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly, IsOwner
 from .serializers import BookSerializer, NoteSerializer, StatusSerializer
 
 
@@ -62,6 +62,7 @@ class StatusList(generics.ListCreateAPIView):
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['book']
     filterset_fields = ['status_choices']
+    permission_classes = (IsOwner)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -72,3 +73,4 @@ class StatusList(generics.ListCreateAPIView):
 class StatusDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Status.objects.all()
     serializer_class = StatusSerializer
+    permission_classes = (IsOwner)
