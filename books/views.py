@@ -62,7 +62,7 @@ class StatusList(generics.ListCreateAPIView):
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['book']
     filterset_fields = ['status_choices']
-    permission_classes = (IsOwner)
+    # permission_classes = (IsOwner)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -73,4 +73,4 @@ class StatusList(generics.ListCreateAPIView):
 class StatusDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Status.objects.all()
     serializer_class = StatusSerializer
-    permission_classes = (IsOwner)
+    # permission_classes = (IsOwner)
