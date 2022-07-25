@@ -27,9 +27,9 @@ class BookDetail(generics.RetrieveUpdateDestroyAPIView):
 class NoteList(generics.ListCreateAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    # permission_classes = (IsPublic, IsOwner,)
 
-    # def perform_create(self, serializer):
-    #     serializer.save(owner=self.request.user)
-    #     # when a book instance is saved,
-    #     # the owner is the user that made the request
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+        # when a note instance is saved,
+        # the owner is the user that made the request

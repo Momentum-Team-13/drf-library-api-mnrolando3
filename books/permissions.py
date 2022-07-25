@@ -1,4 +1,5 @@
 from rest_framework import permissions
+from .models import Note
 
 
 class IsAdminOrReadOnly(permissions.BasePermission):
@@ -12,4 +13,11 @@ class IsAdminOrReadOnly(permissions.BasePermission):
             return request.user.is_staff
         # does this work???
 
-# class IsPublicOrReadOnly
+
+class IsPublic(permissions.BasePermission):
+    pass
+    # def has_permission(self, request, view):
+    #     if 
+    #         return True
+    #     else:
+    #         return request.user.is_staff

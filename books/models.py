@@ -1,6 +1,7 @@
 # from lib2to3.pgen2.pgen import generate_grammar
 # from multiprocessing import AuthenticationError
 # from turtle import title
+# from typing_extensions import Self
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 # from django.db.models.constraints import UniqueConstraint
@@ -47,8 +48,8 @@ class Status(models.Model):
         choices=STATUS_CHOICES,
         default=WANT_TO_READ,
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE,
-                             related_name='user_statuses')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE,
+                              related_name='user_statuses')
     book = models.ForeignKey(Book, on_delete=models.CASCADE,
                              related_name='book_statuses')
 
@@ -61,8 +62,8 @@ class Note(models.Model):
     page_number = models.CharField(max_length=10, null=True, blank=True)
     public = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE,
-                             related_name='user_notes')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE,
+                              related_name='user_notes')
     book = models.ForeignKey(Book, on_delete=models.CASCADE,
                              related_name='book_notes')
 

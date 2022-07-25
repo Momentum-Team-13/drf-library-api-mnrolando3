@@ -18,7 +18,7 @@ class BookSerializer(serializers.ModelSerializer):
 
 
 class NoteSerializer(serializers.ModelSerializer):
-    # owner = serializers.ReadOnlyField(source='owner.username')
+    owner = serializers.ReadOnlyField(source='owner.username')
     # # set owner var as a readonly field
     # # source populates field based on specified attribute owner's username
 
@@ -30,6 +30,5 @@ class NoteSerializer(serializers.ModelSerializer):
             'public',
             'created_at',
             'book',
-            'user',
-            # 'owner',
+            'owner',
         ]
