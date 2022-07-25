@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from .models import Book, User, Status, Note
-from .permissions import IsAdminOrReadOnly
+from .permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
 from .serializers import BookSerializer, NoteSerializer, StatusSerializer
 
 
@@ -50,11 +50,10 @@ class NoteList(generics.ListCreateAPIView):
 
 
 class NoteDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Note.objects.all()
     serializer_class = NoteSerializer
-
-    def get_queryset(self):
-        owner = self.request.user
-        return Note.objects.filter(owner=owner)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly)
 
 
 class StatusList(generics.ListCreateAPIView):
